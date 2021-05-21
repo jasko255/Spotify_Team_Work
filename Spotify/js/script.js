@@ -17,3 +17,45 @@
     })
 
   };
+
+  
+  
+const userinput = document.getElementById('userInput')
+
+  // let cerca = function(){
+  //   // fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${userInput}`)
+  //   fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=queen')
+  //   .then(response => response.json())
+  //   .then(search => {
+  //       console.log('cose',search)
+  //       const parent = document.getElementById('results')
+  //       parent.innerHTML = search.map(search => 
+  //           `<div class="card col-4" >
+  //           <img src="${search.img}" class="card-img-top" alt="...">
+  //           <div class="card-body">
+  //             <h5 class="card-title">${book.title}</h5>
+  //             <p class="card-text">Price ${book.price}</p>
+  //             <a href="#" class="btn btn-primary">Go somewhere</a>
+  //           </div>
+  //         </div>`).join('')
+
+
+  //       })}
+  //       cerca()
+
+  window.onload = function () {
+    console.log("the page is loaded")
+    fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=queen")
+      
+        .then(result => result.json()) 
+       
+        .then(albums => { 
+            console.log(albums)
+             albumCollection = albums 
+            renderAlbum(albums)
+
+            })
+        }
+
+
+  
