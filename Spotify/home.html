@@ -170,18 +170,19 @@
         <!-- Second Section ################### -->
       
     </div>
-
+    
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="" id='userInput'  aria-label="" aria-describedby="basic-addon1">
+      <div class="input-group-append">
+        <button class="btn btn-success" onclick="artistQuery()" type="button">Love it</button>
+      </div>
+    </div>
   </main>
 
 
 
 <!-- search input -->
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="" id='userInput' aria-label="" aria-describedby="basic-addon1">
-    <div class="input-group-append">
-      <button class="btn btn-success" type="button">Love it</button>
-    </div>
-  </div>
+
   
   <div class="container d-flex" >
     <div class="row" id="results">
@@ -316,24 +317,24 @@
 
 
 
-window.onload =function(){
+const artistQuery =function(){
+  const userinput = document.getElementById('userInput')
 
-fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=queen').then(response => response.json())
+fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${userInput.value}`).then(response => response.json())
 .then(musica => {
   let content = musica.data
     // console.log('what is it',content)
     const parent = document.getElementById('results')
     for(let i=0; i<content.length; i++){
-      parent.innerHTML += `<div class="card col-12 col-md-4 col-lg-3 text-light mt-3 " >
+      parent.innerHTML += ` <div class="card col-12 col-md-4 col-lg-3 text-light mt-3 " > <a href ='/album.html'>
             <img src="${content[i].album.cover_small}" class="card-img-top " alt="...">
             <div class="card-body">
               <h5 class="card-title">${content[i].album.title}</h5>
               <p class="card-text">${content[i].artist.name} </p>
-              
+            </a>
             </div>
           </div>`
-      // `<div> <img src="${content[i].album.cover_small}" class="img-fluid" height='200px' width ='200px' alt="...">
-      //    <p> ${content[i].album.title} </p>  </div>`
+     
      
       
     }})
@@ -341,46 +342,6 @@ fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=queen').then(r
     }
 
    
-// // .then(tracks =>  console.log('tracks', tracks) ) 
-      
-    
-    
-    // (content => 
-    //     `<div class="card col-4" >
-    //     <img src="${content.cover}" class="card-img-top" alt="...">
-    //     <div class="card-body">
-    //       <h5 class="card-title">${content.title}</h5>
-    //       <p class="card-text">Price ${content.artist.name}</p>
-    //       <a href="#" class="btn btn-primary">Go somewhere</a>
-    //     </div>
-    //   </div>`).join('')
-
-
-
-
-
-
-// const search = function () {
-//   const searchQuery = document.getElementById("results").value;
-
-//   fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${searchQuery}`, {
-//     method: "GET",
-//     headers,
-//   })
-//     .then((response) => response.json())
-//     .then((musica) => {
-//       result = [];
-
-//       result = musica.musica;
-
-//       const parent = document.querySelector("results");
-
-//       parent.innerHTML = queryResult(searchQuery, result.length);
-
-//       let albums = document.getElementById("id albums");
-//     });
-//   searchQuery = "";
-// };
 
 
 
